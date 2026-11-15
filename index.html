@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MolecularLab | Chemical Intelligence</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+</head>
+
+<body>
+
+  <div class="molecule-bg">⌬　　◇　　 ⬡　　 ⌬　　◇</div>
+
+  <section id="login" class="login-screen">
+    <div class="login-card">
+      <div class="brand-symbol">M</div>
+      <p class="eyebrow">CHEMISTRY • SCIENCE • INNOVATION</p>
+      <h1>Molecular<span>Lab.</span></h1>
+      <p class="muted">Explore the molecular world.</p>
+
+      <form id="loginForm">
+        <label>Username</label>
+        <input id="username" type="text" placeholder="Your username" required>
+
+        <label>Password</label>
+        <input id="password" type="password" placeholder="Your password" required>
+
+        <button type="submit" class="primary-btn">
+          Enter the laboratory →
+        </button>
+        <p id="loginError" class="error"></p>
+      </form>
+      <p class="small-note">A scientific workspace for molecular analysis.</p>
+    </div>
+  </section>
+
+  <main id="application" class="hidden">
+
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="brand-symbol small">M</div>
+        <div>
+          <strong>MolecularLab</strong>
+          <small>CHEMICAL INTELLIGENCE</small>
+        </div>
+      </div>
+
+      <p class="nav-label">WORKSPACE</p>
+      <a href="#home" class="nav-link active">⌂ &nbsp; Dashboard</a>
+      <a href="#analysis" class="nav-link">◈ &nbsp; Molecular analysis</a>
+      <a href="#viewer" class="nav-link">◇ &nbsp; 3D visualization</a>
+      <a href="#results" class="nav-link">▤ &nbsp; Results</a>
+
+      <div class="sidebar-bottom">
+        <p>MOLECULAR RESEARCH</p>
+        <span>Designed for scientific exploration.</span>
+        <button id="logout" class="logout-btn">↪ Log out</button>
+      </div>
+    </aside>
+
+    <section class="content">
+
+      <header class="topbar" id="home">
+        <div>
+          <p class="eyebrow">SCIENTIFIC WORKSPACE</p>
+          <h2>Welcome to your laboratory.</h2>
+        </div>
+        <div class="user-chip">H <span>Hajar</span></div>
+      </header>
+
+      <section class="hero">
+        <div>
+          <p class="eyebrow light">MOLECULAR PROPERTIES ANALYSIS</p>
+          <h1>Discover the<br>world of molecules.</h1>
+          <p>Predict boiling temperatures and explore chemical structures in 3D.</p>
+          <a href="#analysis" class="hero-btn">Start your analysis ↗</a>
+        </div>
+        <div class="hero-decoration">⌬</div>
+      </section>
+
+      <div class="section-heading" id="analysis">
+        <div>
+          <p class="eyebrow">01 / ANALYSIS</p>
+          <h2>Molecular analysis</h2>
+          <p class="muted">Enter a molecule and choose the pressure.</p>
+        </div>
+      </div>
+
+      <div class="analysis-grid">
+        <section class="panel input-panel">
+          <h3>Calculation parameters</h3>
+
+          <form id="predictionForm">
+            <label>Molecule name / Formula / CAS</label>
+            <input id="molecule" placeholder="Example: Water" required>
+
+            <label>Pressure value</label>
+            <input id="pressure" type="number" value="1" min="0.000001" step="any" required>
+
+            <label>Pressure unit</label>
+            <select id="unit">
+              <option value="atm">Atmosphere (atm)</option>
+              <option value="bar">Bar</option>
+              <option value="kpa">Kilopascal (kPa)</option>
+              <option value="pa">Pascal (Pa)</option>
+              <option value="mmhg">mmHg</option>
+            </select>
+
+            <button class="primary-btn" type="submit">
+              Calculate boiling point →
+            </button>
+          </form>
+          <p id="status" class="muted"></p>
+        </section>
+
+        <section class="panel viewer-panel" id="viewer">
+          <div class="panel-title">
+            <div>
+              <p class="eyebrow">MOLECULAR MODEL</p>
+              <h3>3D visualization</h3>
+            </div>
+            <span class="live-tag">INTERACTIVE</span>
+          </div>
+
+          <div id="viewer3d">
+            <div class="viewer-placeholder">
+              <span>⌬</span>
+              <p>Your molecule will appear here.</p>
+              <small>Rotate • Zoom • Explore</small>
+            </div>
+          </div>
+          <p id="moleculeInfo" class="muted">
+            Search for a molecule to display its structure.
+          </p>
+        </section>
+      </div>
+
+      <section class="panel results-panel" id="results">
+        <div class="panel-title">
+          <div>
+            <p class="eyebrow">02 / SCIENTIFIC OUTPUT</p>
+            <h3>Calculation results</h3>
+          </div>
+          <span class="live-tag">RESULTS</span>
+        </div>
+
+        <div class="result-grid">
+          <div class="result-card">
+            <span>MOLECULE</span>
+            <strong id="resultName">—</strong>
+          </div>
+          <div class="result-card">
+            <span>FORMULA</span>
+            <strong id="resultFormula">—</strong>
+          </div>
+          <div class="result-card highlight">
+            <span>BOILING POINT</span>
+            <strong id="resultKelvin">—</strong>
+            <small id="resultCelsius">Waiting for calculation</small>
+          </div>
+          <div class="result-card">
+            <span>CAS NUMBER</span>
+            <strong id="resultCAS">—</strong>
+          </div>
+        </div>
+
+        <div class="method-info">
+          <span>CALCULATION METHOD</span>
+          <p id="resultMethod">No calculation performed yet.</p>
+          <small id="resultSource"></small>
+        </div>
+      </section>
+
+      <footer>
+        <strong>MolecularLab.</strong>
+        <span>Scientific exploration • Chemical engineering</span>
+      </footer>
+
+    </section>
+  </main>
+
+ <script src="app.js"></script>
+</body>
+</html>
